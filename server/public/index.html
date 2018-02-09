@@ -11,14 +11,15 @@
     <h1>Simple Calculator</h1>
     <section id=calculator>
         <p>x=<input type="number" id="xInput" /></p>
+        <div id="operationsButtons">
+        <button id="addButton" value="add">+</button>
+        <button id="subtractButton" value="subtract">-</button>
+        <button id="multiplyButton" value="multiply">*</button>
+        <button id="divideButton" value="divide">/</button>
+        </div>
         <p>y=<input type="number" id="yInput" /></p>
-        <select id=operationSelector>
-          <option value="add">x + y</option>
-          <option value="subtract">x - y</option>
-          <option value="multiply">x * y</option>
-          <option value="divide">x / y</option>
-        </select>
         <button id="calculateButton">Calculate</button>
+        <button id="clearButton">Clear</button>
         <p>Result: <div id="result"></div></p>
     </section>
   </body>
