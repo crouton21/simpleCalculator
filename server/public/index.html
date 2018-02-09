@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Weekend 2 Project</title>
+    <script src="vendors/jQuery.js" charset="utf-8"></script>
+    <script src="scripts/client.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="styles/styles.css">
+  </head>
+  <body>
+    <h1>Simple Calculator</h1>
+    <section id=calculator>
+        <p>x=<input type="number" id="xInput" /></p>
+        <p>y=<input type="number" id="yInput" /></p>
+        <select id=operationSelector>
+          <option value="add">x + y</option>
+          <option value="subtract">x - y</option>
+          <option value="multiply">x * y</option>
+          <option value="divide">x / y</option>
+        </select>
+        <button id="calculateButton">Calculate</button>
+        <p>Result: <div id="result"></div></p>
+    </section>
+  </body>
+</html>
