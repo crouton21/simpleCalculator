@@ -10,16 +10,39 @@
   <body>
     <h1>Simple Calculator</h1>
     <section id=calculator>
-        <p>x=<input class="myInputs" type="number" id="xInput" /></p>
-        <div id="operationsButtons">
-        <button class = "operationsButtons" id="addButton" value="add">+</button>
-        <button class = "operationsButtons" id="subtractButton" value="subtract">-</button>
-        <button class = "operationsButtons" id="multiplyButton" value="multiply">*</button>
-        <button class = "operationsButtons" id="divideButton" value="divide">/</button>
+        <div id="display"></div>
+        <br />
+        <div id="firstRow">
+          <button class="numberButtons button" value="7">7</button>
+          <button class="numberButtons button" value="8">8</button>
+          <button class="numberButtons button" value="9">9</button>
+          <button class = "operationsButtons button" id="divideButton" value="divide">/</button>
         </div>
-        <p>y=<input class="myInputs" type="number" id="yInput" /></p>
-        <button id="calculateButton">Calculate</button>
-        <button id="clearButton">Clear</button>
+        <br />
+        <div id="secondRow">
+          <button class="numberButtons button" value="4">4</button>
+          <button class="numberButtons button" value="5">5</button>
+          <button class="numberButtons button" value="6">6</button>
+          <button class = "operationsButtons button" id="multiplyButton" value="multiply">*</button>
+        </div>
+        <br />
+        <div id="thirdRow">
+          <button class="numberButtons button" value="1">1</button>
+          <button class="numberButtons button" value="2">2</button>
+          <button class="numberButtons button" value="3">3</button>
+          <button class = "operationsButtons button" id="subtractButton" value="subtract">-</button>
+        </div>
+        <br />
+        <div id="fourthRow">
+          <button class="numberButtons button" value="0">0</button>
+          <button id="clearButton" class="button">AC</button>
+          <button id="calculateButton" class="button">=</button>
+          <button class = "operationsButtons button" id="addButton" value="add">+</button>
+        </div>
+        <br / />
+        <div id="fifthRow">
+          <button id="prevAnswer" class="button">Ans</button>
+        </div>
         <p>History: <div id="results"></div></p>
     </section>
   </body>
