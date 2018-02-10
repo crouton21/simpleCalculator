@@ -10,17 +10,17 @@
   <body>
     <h1>Simple Calculator</h1>
     <section id=calculator>
-        <p>x=<input type="number" id="xInput" /></p>
+        <p>x=<input class="myInputs" type="number" id="xInput" /></p>
         <div id="operationsButtons">
-        <button id="addButton" value="add">+</button>
-        <button id="subtractButton" value="subtract">-</button>
-        <button id="multiplyButton" value="multiply">*</button>
-        <button id="divideButton" value="divide">/</button>
+        <button class = "operationsButtons" id="addButton" value="add">+</button>
+        <button class = "operationsButtons" id="subtractButton" value="subtract">-</button>
+        <button class = "operationsButtons" id="multiplyButton" value="multiply">*</button>
+        <button class = "operationsButtons" id="divideButton" value="divide">/</button>
         </div>
-        <p>y=<input type="number" id="yInput" /></p>
+        <p>y=<input class="myInputs" type="number" id="yInput" /></p>
         <button id="calculateButton">Calculate</button>
         <button id="clearButton">Clear</button>
-        <p>Result: <div id="result"></div></p>
+        <p>History: <div id="results"></div></p>
     </section>
   </body>
 </html>

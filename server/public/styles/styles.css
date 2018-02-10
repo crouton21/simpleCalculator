@@ -1,15 +1,10 @@
-#addButton{
+.operationsButtons{
   background-color: #F5F5F5;
+  width: 25px;
+  height: 25px;
 }
 
-#subtractButton{
-  background-color: #F5F5F5;
-}
-
-#multiplyButton{
-  background-color: #F5F5F5;
-}
-
-#divideButton{
-  background-color: #F5F5F5;
+.myInputs{
+  width: 25px;
+  height: 25px;
 }

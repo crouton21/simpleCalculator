@@ -13,7 +13,7 @@ function onReady(){
 function calculateButtonPressed(){
   let x = $('#xInput').val();
   let y = $('#yInput').val();
-  //let operation = $('#operationSelector').val();
+  $('#results').empty();
   let inputObject = {x: x,
                      y: y,
                      operation: operation};
@@ -23,13 +23,26 @@ function calculateButtonPressed(){
     url: '/calculate',
     data: inputObject
   }).done(function(response){
-    console.log(response.calculateResult);
-    displayResult(response.calculateResult);
+    //console.log(response.calculateResult);
+    //displayResult(response.calculateResult);
+    getHistory();
     //do something when post is complete
   }).fail(function(response){
-    console.log('POST:',response);
+    console.log('POST FAIL:',response);
   });
 }//end calculateButtonPressed
+
+function getHistory(){
+  $.ajax({
+    type:'GET',
+    url:'/calculate'
+  }).done(function(response){
+    displayHistory(response);
+    console.log('success', response);
+  }).fail(function(response){
+    console.log('GET FAIL:', response)
+  });
+}
 
 function add(){
   operation = $('#addButton').val();
@@ -51,9 +64,14 @@ function divide(){
   $('#divideButton').css("background-color", "#ccccff");
 }
 
-function displayResult(result){
+function displayHistory(history){
   $('#result').empty();
-  $('#result').append(result);
+  console.log('history', history);
+  for (var i=0; i<history.length; i++){
+    console.log('operation', history[i]);
+    $('#results').append(history[i]);
+    $('#results').append('<br>');
+  }
   let x = $('#xInput').val('');
   let y = $('#yInput').val('');
   $('#addButton').css("background-color", "#F5F5F5");
@@ -64,11 +82,21 @@ function displayResult(result){
 }//end displayResult
 
 function clear(){
-  $('#result').empty();
+  $('#results').empty();
   let x = $('#xInput').val('');
   let y = $('#yInput').val('');
   $('#addButton').css("background-color", "#F5F5F5");
   $('#subtractButton').css("background-color", "#F5F5F5");
   $('#multiplyButton').css("background-color", "#F5F5F5");
   $('#divideButton').css("background-color", "#F5F5F5");
+  //ajax post to clear history array
+  $.ajax({
+    type:'POST',
+    url: '/calculate/clear',
+    data: {emptyArray: []}
+  }).done(function(response){
+    console.log(response);
+  }).fail(function(response){
+    console.log('POST FAIL:',response);
+  });
 }
