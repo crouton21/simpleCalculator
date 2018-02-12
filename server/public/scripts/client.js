@@ -16,17 +16,12 @@ function onReady(){
 }
 
 function calculateButtonPressed(){
-  if (!checkForTwoOperations()){
-    alert('Sorry this calculator is stupid, only one calculation at a time!');
-    $('#display').empty();
-    $('#addButton').css("background-color", "#F5F5F5");
-    $('#subtractButton').css("background-color", "#F5F5F5");
-    $('#multiplyButton').css("background-color", "#F5F5F5");
-    $('#divideButton').css("background-color", "#F5F5F5");
-    equationToSend = [];
-    return;
-  }
-  else{
+  // if (!checkForTwoOperations()){
+  //   alert('Sorry this calculator is stupid, only one calculation at a time!');
+  //   clearDisplays();
+  //   return;
+  // }
+  // else{
   let xy = determineXAndY();
   let x = xy[0];
   let y = xy[1];
@@ -49,7 +44,7 @@ function calculateButtonPressed(){
     console.log('POST FAIL:',response);
   });
   equationToSend = [];
-}//end else
+//}//end else
 }//end calculateButtonPressed
 
 function getHistory(){
@@ -103,12 +98,23 @@ function determineXAndY(){
   let x='';
   let y='';
   let indexOfOperation;
-  for (let i=0; i<equationToSend.length; i++){
-    //find index of operation
-    if (typeof(equationToSend[i])=="string"){
-      indexOfOperation = i;
-    }
+  console.log(equationToSend.indexOf('add',0));
+  console.log(equationToSend.indexOf('subtract',0));
+  console.log(equationToSend.indexOf('multiply',0));
+  console.log(equationToSend.indexOf('divide',0));
+  if (equationToSend.indexOf('add',0) != -1){
+    indexOfOperation = equationToSend.indexOf('add',0);
   }
+  else if (equationToSend.indexOf('subtract',0) != -1){
+    indexOfOperation = equationToSend.indexOf('subtract',0);
+  }
+  else if (equationToSend.indexOf('multiply',0) != -1){
+    indexOfOperation = equationToSend.indexOf('multiply',0);
+  }
+  else if (equationToSend.indexOf('divide',0) != -1){
+    indexOfOperation = equationToSend.indexOf('divide',0);
+  }
+  console.log(indexOfOperation, 'index of operation');
   for (let i=0; i<indexOfOperation; i++){
     //add everthing before index of operation to variable x
     x += String(equationToSend[i]);
@@ -134,7 +140,6 @@ function displayHistory(history){
   $('#subtractButton').css("background-color", "#F5F5F5");
   $('#multiplyButton').css("background-color", "#F5F5F5");
   $('#divideButton').css("background-color", "#F5F5F5");
-  //let operation = $('#operationSelector').val('add');
 }//end displayResult
 
 function clearDisplays(){
@@ -161,14 +166,14 @@ function clear(){
   });
 }
 
-function checkForTwoOperations(){
-  let numOperations=0
-  for (var i=0; i<equationToSend.length; i++){
-    if (typeof(equationToSend[i])=="string"){
-        numOperations += 1;}}
-  if (numOperations == 1){return true;}
-  else{return false;}
-}
+// function checkForTwoOperations(){
+//   let numOperations=0
+//   for (var i=0; i<equationToSend.length; i++){
+//     if (typeof(equationToSend[i])=="string" && equationToSend[i] != '.'){ //&& !'.'
+//         numOperations += 1;}}
+//   if (numOperations == 1){return true;}
+//   else{return false;}
+// }
 
 function getLastAnswer(listOfEquations){
   let lastEquation = listOfEquations[(listOfEquations.length)-1];
@@ -183,18 +188,20 @@ function getLastAnswer(listOfEquations){
     }
   }
   for (var i=indexOfEquals+2; i<lastEquation.length; i++){
-    lastAnswer += lastEquation[i];
+    lastAnswer += String(lastEquation[i]); //String(lastEquation[i])
   }
-  return lastAnswer;
+  return Number(lastAnswer); //Number(lastAnswer)
 }
 
 function displayLastAnswer(){
   let lastAnswer = getLastAnswer(history);
   console.log(lastAnswer);
   $('#display').append(lastAnswer);
-  console.log(lastAnswer);
+  lastAnswer = String(lastAnswer);
+  console.log(typeof(lastAnswer));
   lastAnswer = lastAnswer.split('');
+  console.log(lastAnswer, 'after split');
   for (var i=0; i<lastAnswer.length; i++){
-    equationToSend.push(Number(lastAnswer[i]));
+    equationToSend.push(lastAnswer[i]);  //take out Number
   }
 }
