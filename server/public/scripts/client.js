@@ -16,6 +16,13 @@ function onReady(){
 }
 
 function calculateButtonPressed(){
+  //check for more than one operator, if there is one-- alert and return; else -- do rest of function
+  if (!checkForTwoOperators()){
+    alert('This calculator can only handle one operation at a time!');
+    clearDisplays();
+    return;
+  }
+  else{
   let xy = determineXAndY();
   let x = xy[0];
   let y = xy[1];
@@ -35,6 +42,7 @@ function calculateButtonPressed(){
     console.log('POST FAIL:',response);
   });
   equationToSend = [];
+}//end else
 }//end calculateButtonPressed
 
 function getHistory(){
@@ -48,6 +56,21 @@ function getHistory(){
   }).fail(function(response){
     console.log('GET FAIL:', response)
   });
+}
+
+function checkForTwoOperators(){
+  let countOperators = 0;
+  for (var i=0; i<equationToSend.length; i++){
+    if (equationToSend[i]=='add' || equationToSend[i]=='subtract' || equationToSend[i]=='multiply' || equationToSend[i]=='divide'){
+      countOperators += 1;
+    }
+  }
+  if (countOperators == 1){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
 function add(){
