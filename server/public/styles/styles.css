@@ -2,21 +2,30 @@
   width: 25px;
   height: 25px;
   background-color: #F5F5F5;
+  box-shadow: 2px 2px 2px gray;
+  margin-right: 5px;
 }
 
 #display{
   border-style: solid;
   border-width: 1px;
   border-color: black;
-  width: 110px;
+  width: 128px;
   height: 25px;
 }
 
 #prevAnswer{
-  width: 112px;
-  margin-bottom: 10px;
+  width: 93px;
+  margin-bottom: 17px;
 }
 
 #clearHistoryButton{
-  width:112px;
+  width:127px;
+}
+
+.button:active{
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px;
+  background-color: inherit;
+  outline: none;
 }

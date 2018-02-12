@@ -16,12 +16,6 @@ function onReady(){
 }
 
 function calculateButtonPressed(){
-  // if (!checkForTwoOperations()){
-  //   alert('Sorry this calculator is stupid, only one calculation at a time!');
-  //   clearDisplays();
-  //   return;
-  // }
-  // else{
   let xy = determineXAndY();
   let x = xy[0];
   let y = xy[1];
@@ -36,15 +30,11 @@ function calculateButtonPressed(){
     url: '/calculate',
     data: inputObject
   }).done(function(response){
-    //console.log(response.calculateResult);
-    //displayResult(response.calculateResult);
     getHistory();
-    //do something when post is complete
   }).fail(function(response){
     console.log('POST FAIL:',response);
   });
   equationToSend = [];
-//}//end else
 }//end calculateButtonPressed
 
 function getHistory(){
@@ -91,7 +81,8 @@ function divide(){
 function numberClicked(){
   let number = $(this).val();
   $('#display').append(number);
-  equationToSend.push(Number(number));
+  equationToSend.push(number);
+  console.log(equationToSend);
 }
 
 function determineXAndY(){
@@ -166,15 +157,6 @@ function clear(){
   });
 }
 
-// function checkForTwoOperations(){
-//   let numOperations=0
-//   for (var i=0; i<equationToSend.length; i++){
-//     if (typeof(equationToSend[i])=="string" && equationToSend[i] != '.'){ //&& !'.'
-//         numOperations += 1;}}
-//   if (numOperations == 1){return true;}
-//   else{return false;}
-// }
-
 function getLastAnswer(listOfEquations){
   let lastEquation = listOfEquations[(listOfEquations.length)-1];
   //reset global variable last answer based on resopnse
@@ -188,9 +170,9 @@ function getLastAnswer(listOfEquations){
     }
   }
   for (var i=indexOfEquals+2; i<lastEquation.length; i++){
-    lastAnswer += String(lastEquation[i]); //String(lastEquation[i])
+    lastAnswer += String(lastEquation[i]);
   }
-  return Number(lastAnswer); //Number(lastAnswer)
+  return Number(lastAnswer);
 }
 
 function displayLastAnswer(){
@@ -202,6 +184,6 @@ function displayLastAnswer(){
   lastAnswer = lastAnswer.split('');
   console.log(lastAnswer, 'after split');
   for (var i=0; i<lastAnswer.length; i++){
-    equationToSend.push(lastAnswer[i]);  //take out Number
+    equationToSend.push(lastAnswer[i]);
   }
 }
