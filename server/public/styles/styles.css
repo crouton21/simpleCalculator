@@ -13,5 +13,10 @@
 }
 
 #prevAnswer{
-  width: 120px;
+  width: 112px;
+  margin-bottom: 10px;
+}
+
+#clearHistoryButton{
+  width:112px;
 }

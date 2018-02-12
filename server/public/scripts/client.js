@@ -9,9 +9,10 @@ function onReady(){
   $('#subtractButton').on('click', subtract);
   $('#multiplyButton').on('click', multiply);
   $('#divideButton').on('click', divide);
-  $('#clearButton').on('click', clear);
+  $('#clearButton').on('click', clearDisplays);
   $('.numberButtons').on('click', numberClicked);
   $('#prevAnswer').on('click', displayLastAnswer);
+  $('#clearHistoryButton').on('click', clear);
 }
 
 function calculateButtonPressed(){
@@ -136,14 +137,18 @@ function displayHistory(history){
   //let operation = $('#operationSelector').val('add');
 }//end displayResult
 
-function clear(){
-  $('#results').empty();
+function clearDisplays(){
   $('#addButton').css("background-color", "#F5F5F5");
   $('#subtractButton').css("background-color", "#F5F5F5");
   $('#multiplyButton').css("background-color", "#F5F5F5");
   $('#divideButton').css("background-color", "#F5F5F5");
   $('#display').empty();
   equationToSend = [];
+}
+
+function clear(){
+  $('#results').empty();
+  clearDisplays();
   //ajax post to clear history array
   $.ajax({
     type:'POST',
